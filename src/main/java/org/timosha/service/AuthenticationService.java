@@ -1,11 +1,15 @@
-package org.timosha;
+package org.timosha.service;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.timosha.config.JwtAuthenticationResponse;
+import org.timosha.model.SignInRequest;
+import org.timosha.model.SignUpRequest;
+import org.timosha.dto.Role;
+import org.timosha.model.User;
 
 @Service
 public class AuthenticationService {

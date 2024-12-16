@@ -1,4 +1,4 @@
-package org.timosha;
+package org.timosha.config;
 
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.FilterChain;
@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.timosha.service.JwtService;
+import org.timosha.service.UserService;
 
 import java.io.IOException;
 
@@ -32,14 +34,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
 
-        // Получаем токен из заголовка
         var authHeader = request.getHeader(HEADER_NAME);
         if (StringUtils.isEmpty(authHeader)) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        // Обрезаем префикс и получаем имя пользователя из токена
         var jwt = authHeader.substring(BEARER_PREFIX.length());
         var username = jwtService.extractUserName(jwt);
 
@@ -48,7 +48,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     .userDetailsService()
                     .loadUserByUsername(username);
 
-            // Если токен валиден, то аутентифицируем пользователя
             if (jwtService.isTokenValid(jwt, userDetails)) {
                 SecurityContext context = SecurityContextHolder.createEmptyContext();
 

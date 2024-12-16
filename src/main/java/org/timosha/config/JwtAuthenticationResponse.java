@@ -1,4 +1,4 @@
-package org.timosha;
+package org.timosha.config;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

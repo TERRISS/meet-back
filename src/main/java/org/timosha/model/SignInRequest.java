@@ -1,10 +1,9 @@
-package org.timosha;
+package org.timosha.model;
 
 import lombok.Data;
 
 @Data
-public class SignUpRequest {
+public class SignInRequest {
     private String username;
-    private String email;
     private String password;
 }

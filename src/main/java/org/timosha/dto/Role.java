@@ -1,4 +1,4 @@
-package org.timosha;
+package org.timosha.dto;
 
 public enum Role {
     ROLE_USER,
