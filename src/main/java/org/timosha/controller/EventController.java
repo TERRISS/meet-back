@@ -33,7 +33,7 @@ public class EventController {
     }
 
     @DeleteMapping("/events/{id}")
-    public ResponseEntity<Void> deleteEvent(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> deleteEventById(@PathVariable("id") Long id) {
         eventService.deleteEvent(id);
         return ResponseEntity.noContent().build();
     }
